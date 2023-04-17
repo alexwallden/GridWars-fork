@@ -6,4 +6,4 @@
 
 <script setup lang="ts"></script>
 
-<style></style>
+<style lang="sass" scoped></style>
