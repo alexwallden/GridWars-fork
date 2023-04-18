@@ -1,13 +1,13 @@
 <template>
-  <div>
+  <div class="color-container">
     <label class="visually-hidden" for="color-picker">Välj din färg</label>
     <select :class="selectColor" name="color picker" id="color-picker" @change="setSelectedColor">
       <option value="" class="option">Välj din färg</option>
-      <option value="option-one" class="option-one"></option>
-      <option value="option-two" class="option-two"></option>
-      <option value="option-three" class="option-three"></option>
-      <option value="option-four" class="option-four"></option>
-      <option value="option-five" class="option-five"></option>
+      <option value="#0074cc" class="option-one" name="blue"></option>
+      <option value="#ff0000" class="option-two" name="red"></option>
+      <option value="#00ff00" class="option-three" name="green"></option>
+      <option value="#ffff00" class="option-four" name="yellow"></option>
+      <option value="#57076b" class="option-five" name="purple"></option>
     </select>
   </div>
 </template>
@@ -17,9 +17,13 @@ import { ref } from 'vue'
 
 const selectColor = ref('')
 
+const playerSelectedColor = ref('')
+
 function setSelectedColor(e: any) {
   console.log(e.currentTarget.value)
-  selectColor.value = e.currentTarget.value
+  console.log(e.currentTarget.selectedOptions[0].classList.value)
+  playerSelectedColor.value = e.currentTarget.value
+  selectColor.value = e.currentTarget.selectedOptions[0].classList.value
 }
 </script>
 
@@ -37,13 +41,20 @@ function setSelectedColor(e: any) {
   border: 0 !important;
 }
 
-select {
-  cursor: pointer;
+.color-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 }
 
-option:hover {
-  cursor: tr;
+select {
+  cursor: pointer;
+  width: 100%;
 }
+
 .option-one {
   background-color: #0074cc;
 }
@@ -62,5 +73,10 @@ option:hover {
 
 .option-five {
   background-color: #57076b;
+}
+
+option::selection {
+  background-color: rgba(255, 255, 255, 0);
+  cursor: pointer;
 }
 </style>

@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import type CreateUser from "@/models/CreateUser";
+import CreateUser from "@/models/CreateUser";
 
 const STORE_NAME = 'userStore'
 
@@ -9,7 +9,7 @@ export const useUserStore = defineStore(STORE_NAME, {
   }),
   actions: {
     addUser(userName: string, color: string, id: number) {
-      this.users.push({ name: userName, color: color, id: id})
+      this.users.push(new CreateUser(userName, color, id))
     }
   }
 })
