@@ -4,8 +4,8 @@
     <input class="chat-input" ref="input" id="inputText" type="text" />
     <button class="chat-input-btn" @click="sendMessage">Send</button>
     <ul>
-      <li v-for="(message, i) in chatState.chatMessages" :key="i">
-        {{ message.messageBody }}
+      <li :class="message.userId === loggedInUser ? 'my-message' : 'other-message'" v-for="(message, i) in chatState.chatMessages" :key="i">
+        {{ message.username + ": " + message.messageBody }}
       </li>
     </ul>
   </section>
@@ -17,21 +17,35 @@
   import { chatState } from '@/sockets/chatSocket';
   import { ref } from 'vue';
 
-  chatSocket.connect();
+  localStorage.setItem("userId", "1") // Temporary item for testing
+  const loggedInUser = JSON.parse(localStorage.getItem("userId") || "null")
+
   const input = ref<HTMLInputElement | null>(null)
-  console.log(input);
   
   function sendMessage() {
-    const newMessage = new ChatMessage("Nicholas", 1, input.value?.value as string)
+    const newMessage = new ChatMessage("Alexander", 2, input.value?.value as string) // Update to get "username" and "userId" from localStorage
     
     chatSocket.emit("chat", newMessage)
-    // console.log(newMessage);
-    // console.log("chatState: ", chatState.chatMessages);
-    console.log(chatState.chatMessages);
   }
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+  ul {
+    border: 1px solid black;
+    padding: 1rem;
+
+    li {
+      list-style: none;
+    }
+  }
+
+  .my-message {
+    text-align: right;
+  }
+
+  .other-message {
+    text-align: left;
+  }
 
 </style>
