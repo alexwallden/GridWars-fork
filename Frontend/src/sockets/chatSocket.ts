@@ -13,5 +13,4 @@ chatSocket.on('chat', (message: ChatMessage) => {
   console.log('Mottaget');
   
   chatState.chatMessages.push(message)
-  console.log(chatState.chatMessages);
 })
