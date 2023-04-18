@@ -5,7 +5,9 @@ const logger = require("morgan");
 
 const app = express();
 const server = require("http").Server(app);
-const io = require("socket.io")(server);
+const io = require("socket.io")(server, {
+  cors: { origin: "*", methods: ["GET", "POST"] },
+});
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -21,6 +23,10 @@ io.on("connection", (socket) => {
   socket.on("create-user", (user) => {
     users.push(user);
     socket.emit(users);
+  });
+
+  socket.on("chat", (message) => {
+    console.log(message);
   });
 });
 
