@@ -1,12 +1,9 @@
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
 
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
-
-var app = express();
+const app = express();
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
 
@@ -16,7 +13,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
+let users = [];
+
+io.on("connection", (socket) => {
+  console.log("user connected: " + socket.id);
+
+  socket.on("create-user", (user) => {
+    users.push(user);
+    socket.emit(users);
+  });
+});
 
 module.exports = { app: app, server: server };

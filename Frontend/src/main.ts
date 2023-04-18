@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import { io } from 'https://cdn.socket.io/4.3.2/socket.io.esm.min.js';
 
 import App from './App.vue'
 import router from './router'
