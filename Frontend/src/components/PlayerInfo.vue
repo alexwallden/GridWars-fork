@@ -12,8 +12,8 @@ import { ref } from 'vue'
 
 const store = useUserStore()
 
-const playerName = store.users[0].name
-const PlayerColor = store.users[0].color
+const playerName = store.user[0].name
+const PlayerColor = store.user[0].color
 const PlayerColorCss = ref(PlayerColor)
 
 </script>

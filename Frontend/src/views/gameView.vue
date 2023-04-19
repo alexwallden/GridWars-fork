@@ -1,9 +1,9 @@
 <script setup lang="ts">
   import  ChatWindow  from "../components/ChatWindow.vue"
+  import PlayerInfo from "../components/PlayerInfo.vue"
   import { useUserStore } from '@/stores/userStore'
   const store = useUserStore()
   console.log(store.user[0])
-  import PlayerInfo from "@/components/PlayerInfo.vue"
 
 </script>
 
