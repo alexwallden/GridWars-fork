@@ -8,8 +8,8 @@ export const useChatStore = defineStore(STORE_NAME, {
     messages: [] as ChatMessage[]
   }),
   actions: {
-    addMessage(username: string, userId: number, messageBody: string) {
-      this.messages.push(new ChatMessage(username, userId, messageBody))
+    addMessage(username: string, userColor: string, userId: string, messageBody: string) {
+      this.messages.push(new ChatMessage(username, userColor, userId, messageBody))
     }
   }
 })
