@@ -1,7 +1,7 @@
 <template>
     <div class="player-info-container">
         <h3 class="player-name">{{ playerName }}</h3>
-        <p class="player-color">color</p>
+        <p class="player-color"></p>
     </div>
 
 </template>
@@ -19,8 +19,14 @@ const PlayerColorCss = ref(PlayerColor)
 </script>
 
 <style scoped lang="scss">
+.player-info-container {
+    margin-bottom: 10px;
+
+}
 .player-color {
-    color: v-bind(PlayerColorCss);
+    background-color: v-bind(PlayerColorCss);
+    width: 75px;
+    height: 25px;
 }
 
 </style>
