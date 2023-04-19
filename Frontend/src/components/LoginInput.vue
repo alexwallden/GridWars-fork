@@ -10,36 +10,40 @@
         v-model="playerName"
       />
       <LoginColor class="login-color-container" @player-selected-color="setPlayerColor" />
-      <button class="play-btn" type="submit">Play</button>
-
+      <button class="play-btn" type="submit" :disabled="btnDisabled">Play</button>
     </form>
   </div>
 </template>
 
 <script setup lang="ts">
 import LoginColor from './LoginColor.vue'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useUserStore } from '@/stores/userStore'
 import { userSocket } from '@/sockets/userSocket'
-import { v4 as uuidv4 } from 'uuid';
-import User from '@/models/User'; 
+import { v4 as uuidv4 } from 'uuid'
+import User from '@/models/User'
+import router from '@/router'
 
 const store = useUserStore()
 
 const playerName = ref('')
 const playerColor = ref('')
 
+const btnDisabled = computed(() => {
+  return playerName.value === '' || playerColor.value === ''
+})
+
 function createUser() {
   const id = uuidv4()
   store.addUser(playerName.value, playerColor.value, id)
   const newUser = new User(playerName.value, playerColor.value, id)
-  userSocket.emit("create-user", newUser)
+  userSocket.emit('create-user', newUser)
+  router.push('/game')
 }
 
 function setPlayerColor(color: string) {
   playerColor.value = color
 }
-
 </script>
 
 <style lang="scss" scoped>
@@ -95,4 +99,9 @@ function setPlayerColor(color: string) {
   }
 }
 
+.play-btn:disabled {
+  background: #797979;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 </style>
