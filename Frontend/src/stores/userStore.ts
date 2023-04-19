@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
-import type CreateUser from "@/models/CreateUser";
+import CreateUser from "@/models/CreateUser";
+import { v4 as uuidv4 } from 'uuid';
 
 const STORE_NAME = 'userStore'
 
@@ -8,8 +9,9 @@ export const useUserStore = defineStore(STORE_NAME, {
     users: [] as CreateUser[]
   }),
   actions: {
-    addUser(userName: string, color: string, id: number) {
-      this.users.push({ name: userName, color: color, id: id})
+    addUser(userName: string, color: string) {
+      const id = uuidv4()
+      this.users.push(new CreateUser(userName, color, id))
     }
   }
 })
