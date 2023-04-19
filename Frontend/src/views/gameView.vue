@@ -1,10 +1,12 @@
 <script setup lang="ts">
-  import  ChatWindow  from "../components/ChatWindow.vue"
+import PlayerInfo from "@/components/PlayerInfo.vue"
+import  ChatWindow  from "../components/ChatWindow.vue"
 </script>
 
   <template>
     <div>
       <h1>gameview</h1>
+      <PlayerInfo />
       <ChatWindow />
     </div>
   </template>
