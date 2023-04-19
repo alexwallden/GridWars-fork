@@ -30,6 +30,7 @@ const loggedInUser = localStorage.getItem('userId') || 'null'
 
 const input = ref<HTMLInputElement | null>(null)
 
+
 function sendMessage() {
   const name = store.user[0].name
   const id = store.user[0].id
