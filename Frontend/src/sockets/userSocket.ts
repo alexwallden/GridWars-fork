@@ -1,14 +1,15 @@
-import type CreateUser from '@/models/CreateUser';
+import type User from '@/models/User'; //Ändrade import här pga ändrat filnamn?
 import { reactive } from 'vue'
 import { io } from 'socket.io-client'
 
 export const userState = reactive({
-    user: {} as CreateUser[]
+    user: [] as User[]
   })
   
   export const userSocket = io('http://localhost:3000');
   
-  userSocket.on('user', (user: CreateUser) => {
+  userSocket.on('create-user', (user: User) => {
+    userState.user = [];
     console.log('Mottagen user');
     
     userState.user.push(user)

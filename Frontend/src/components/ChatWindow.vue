@@ -29,6 +29,7 @@ const loggedInUser = JSON.parse(localStorage.getItem('userId') || 'null')
 
 const input = ref<HTMLInputElement | null>(null)
 
+
 function sendMessage() {
   const name = store.user[0].name
   const newMessage = new ChatMessage(name, 2, input.value?.value as string) // Update to get "username" and "userId" from localStorage

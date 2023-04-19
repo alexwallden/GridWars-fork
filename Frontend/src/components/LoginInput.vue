@@ -21,6 +21,8 @@ import LoginColor from './LoginColor.vue'
 import { ref } from 'vue'
 import { useUserStore } from '@/stores/userStore'
 import { userSocket } from '@/sockets/userSocket'
+import { v4 as uuidv4 } from 'uuid';
+import User from '@/models/User'; 
 
 const store = useUserStore()
 
@@ -28,8 +30,10 @@ const playerName = ref('')
 const playerColor = ref('')
 
 function createUser() {
-  store.addUser(playerName.value, playerColor.value)
-  userSocket.emit("create-user", store)
+  const id = uuidv4()
+  store.addUser(playerName.value, playerColor.value, id)
+  const newUser = new User(playerName.value, playerColor.value, id)
+  userSocket.emit("create-user", newUser)
 }
 
 // function startPlay() {
