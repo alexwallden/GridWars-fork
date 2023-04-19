@@ -9,7 +9,7 @@
         placeholder="Enter player name"
         v-model="playerName"
       />
-      <LoginColor class="login-color-container" />
+      <LoginColor class="login-color-container" @player-selected-color="setPlayerColor" />
       <button class="play-btn" type="submit">Play</button>
     </form>
   </div>
@@ -18,11 +18,22 @@
 <script setup lang="ts">
 import LoginColor from './LoginColor.vue'
 import { ref } from 'vue'
+import { useUserStore } from '@/stores/userStore'
+
+const store = useUserStore()
 
 const playerName = ref('')
+const playerColor = ref('')
 
 function startPlay() {
   console.log(playerName.value)
+  console.log(playerColor.value)
+
+  store.addUser(playerName.value, playerColor.value)
+}
+
+function setPlayerColor(color: string) {
+  playerColor.value = color
 }
 </script>
 

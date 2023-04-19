@@ -13,17 +13,19 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, defineEmits } from 'vue'
+
+const emit = defineEmits(['player-selected-color'])
 
 const selectColor = ref('')
 
 const playerSelectedColor = ref('')
 
 function setSelectedColor(e: any) {
-  console.log(e.currentTarget.value)
-  console.log(e.currentTarget.selectedOptions[0].classList.value)
   playerSelectedColor.value = e.currentTarget.value
   selectColor.value = e.currentTarget.selectedOptions[0].classList.value
+
+  emit('player-selected-color', playerSelectedColor.value)
 }
 </script>
 
