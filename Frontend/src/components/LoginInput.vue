@@ -28,16 +28,33 @@ const playerName = ref('')
 const playerColor = ref('')
 
 function createUser() {
+  if (nameIsTaken()) {
+    alert("Name already taken")
+    return
+  }
+  if (colorIsTaken()) {
+    alert("Color already taken")
+    return
+  }
   store.addUser(playerName.value, playerColor.value)
   userSocket.emit("create-user", store)
 }
 
-// function startPlay() {
-//   console.log(playerName.value)
-//   console.log(playerColor.value)
+function colorIsTaken() {
+  for (let i = 0; i < store.user.length; i++) {
+    if (store.user[i].color === playerColor.value) {
+      return true;
+    }
+  }
+}
 
-//   store.addUser(playerName.value, playerColor.value)
-// }
+function nameIsTaken() {
+  for (let i = 0; i < store.user.length; i++) {
+    if (store.user[i].name === playerName.value) {
+      return true;
+    }
+  }  
+}
 
 function setPlayerColor(color: string) {
   playerColor.value = color
