@@ -1,6 +1,10 @@
 <script setup lang="ts">
-import PlayerInfo from "@/components/PlayerInfo.vue"
-import  ChatWindow  from "../components/ChatWindow.vue"
+  import  ChatWindow  from "../components/ChatWindow.vue"
+  import { useUserStore } from '@/stores/userStore'
+  const store = useUserStore()
+  console.log(store.user[0])
+  import PlayerInfo from "@/components/PlayerInfo.vue"
+
 </script>
 
   <template>

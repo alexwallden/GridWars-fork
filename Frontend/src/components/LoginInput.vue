@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form class="form-container" @submit.prevent="startPlay">
+    <form class="form-container" @submit.prevent="createUser">
       <label class="visually-hidden" for="playerInput">Enter player name</label>
       <input
         type="text"
@@ -20,18 +20,24 @@
 import LoginColor from './LoginColor.vue'
 import { ref } from 'vue'
 import { useUserStore } from '@/stores/userStore'
+import { userSocket } from '@/sockets/userSocket'
 
 const store = useUserStore()
 
 const playerName = ref('')
 const playerColor = ref('')
 
-function startPlay() {
-  console.log(playerName.value)
-  console.log(playerColor.value)
-
+function createUser() {
   store.addUser(playerName.value, playerColor.value)
+  userSocket.emit("create-user", store)
 }
+
+// function startPlay() {
+//   console.log(playerName.value)
+//   console.log(playerColor.value)
+
+//   store.addUser(playerName.value, playerColor.value)
+// }
 
 function setPlayerColor(color: string) {
   playerColor.value = color

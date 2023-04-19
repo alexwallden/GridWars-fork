@@ -1,4 +1,4 @@
-export default class user {
+export default class User {
   constructor(
    public name: string,
    public color: string,

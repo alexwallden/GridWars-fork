@@ -1,17 +1,19 @@
 import { defineStore } from "pinia";
-import CreateUser from "@/models/CreateUser";
+import User from "@/models/User";
 import { v4 as uuidv4 } from 'uuid';
 
 const STORE_NAME = 'userStore'
 
 export const useUserStore = defineStore(STORE_NAME, {
   state: () => ({
-    users: [] as CreateUser[]
+    user: [] as User[]
   }),
   actions: {
     addUser(userName: string, color: string) {
+      this.user = []
       const id = uuidv4()
-      this.users.push(new CreateUser(userName, color, id))
+      this.user.push(new User(userName, color, id))
+      console.log(this.user);
     }
   }
 })
