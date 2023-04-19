@@ -22,7 +22,9 @@ io.on("connection", (socket) => {
 
   socket.on("create-user", (user) => {
     users.push(user);
-    socket.emit(users);
+    console.log("Users: ", users[0].user);
+    // console.log("Users: ", users[1].user);
+    io.emit(users);
   });
 
   socket.on("chat", (message) => {

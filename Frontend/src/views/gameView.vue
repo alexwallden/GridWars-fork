@@ -1,5 +1,9 @@
 <script setup lang="ts">
   import  ChatWindow  from "../components/ChatWindow.vue"
+  import { useUserStore } from '@/stores/userStore'
+  const store = useUserStore()
+  console.log(store.user[0])
+  
 </script>
 
   <template>
