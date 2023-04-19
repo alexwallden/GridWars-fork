@@ -5,8 +5,9 @@
     <button class="chat-input-btn" @click="sendMessage">Send</button>
     <ul>
       <li
-        :class="message.userId === loggedInUser ? 'my-message' : 'other-message'"
         v-for="(message, i) in chatState.chatMessages"
+        :class="message.userId === loggedInUser ? 'my-message' : 'other-message'"
+        :style="{ backgroundColor: message.userColor }"
         :key="i"
       >
         {{ message.username + ': ' + message.messageBody }}
@@ -24,15 +25,17 @@ import { useUserStore } from '@/stores/userStore'
 
 const store = useUserStore()
 
-localStorage.setItem('userId', '1') // Temporary item for testing
-const loggedInUser = JSON.parse(localStorage.getItem('userId') || 'null')
+localStorage.setItem('userId', store.user[0].id) // Temporary item for testing
+const loggedInUser = localStorage.getItem('userId') || 'null'
 
 const input = ref<HTMLInputElement | null>(null)
 
 
 function sendMessage() {
   const name = store.user[0].name
-  const newMessage = new ChatMessage(name, 2, input.value?.value as string) // Update to get "username" and "userId" from localStorage
+  const id = store.user[0].id
+  const color = store.user[0].color
+  const newMessage = new ChatMessage(name, color, id, input.value?.value as string) // Update to get "username" and "userId" from localStorage
 
   chatSocket.emit('chat', newMessage)
 }
@@ -42,6 +45,8 @@ function sendMessage() {
 ul {
   border: 1px solid black;
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
 
   li {
     list-style: none;
@@ -49,10 +54,14 @@ ul {
 }
 
 .my-message {
+  align-self: flex-end;
   text-align: right;
+  width: fit-content;
 }
 
 .other-message {
+  align-self: flex-start;
   text-align: left;
+  width: fit-content;
 }
 </style>

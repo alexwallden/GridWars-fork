@@ -36,13 +36,6 @@ function createUser() {
   userSocket.emit("create-user", newUser)
 }
 
-// function startPlay() {
-//   console.log(playerName.value)
-//   console.log(playerColor.value)
-
-//   store.addUser(playerName.value, playerColor.value)
-// }
-
 function setPlayerColor(color: string) {
   playerColor.value = color
 }
