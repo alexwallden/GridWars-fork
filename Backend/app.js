@@ -31,6 +31,10 @@ io.on("connection", (socket) => {
     console.log("Message: ", message);
     io.emit("chat", message);
   });
+
+  socket.on('color-change', (color) => {
+    console.log(color);
+  })
 });
 
 module.exports = { app: app, server: server };
