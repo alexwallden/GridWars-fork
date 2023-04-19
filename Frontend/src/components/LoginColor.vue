@@ -1,4 +1,5 @@
 <template>
+
   <div class="color-container">
     <label class="visually-hidden" for="color-picker">Välj din färg</label>
     <select :class="selectColor" name="color picker" id="color-picker" @change="setSelectedColor">
@@ -8,11 +9,13 @@
       <option value="#00ff00" class="option-three" name="green"></option>
       <option value="#ffff00" class="option-four" name="yellow"></option>
       <option value="#57076b" class="option-five" name="purple"></option>
+
     </select>
   </div>
 </template>
 
 <script setup lang="ts">
+
 import { ref, defineEmits } from 'vue'
 
 const emit = defineEmits(['player-selected-color'])
@@ -26,6 +29,7 @@ function setSelectedColor(e: any) {
   selectColor.value = e.currentTarget.selectedOptions[0].classList.value
 
   emit('player-selected-color', playerSelectedColor.value)
+
 }
 </script>
 
@@ -81,4 +85,5 @@ option::selection {
   background-color: rgba(255, 255, 255, 0);
   cursor: pointer;
 }
+
 </style>

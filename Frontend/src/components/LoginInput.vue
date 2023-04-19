@@ -11,6 +11,7 @@
       />
       <LoginColor class="login-color-container" @player-selected-color="setPlayerColor" />
       <button class="play-btn" type="submit">Play</button>
+
     </form>
   </div>
 </template>
@@ -35,6 +36,7 @@ function startPlay() {
 function setPlayerColor(color: string) {
   playerColor.value = color
 }
+
 </script>
 
 <style lang="scss" scoped>
@@ -89,4 +91,5 @@ function setPlayerColor(color: string) {
     background: #009193;
   }
 }
+
 </style>
