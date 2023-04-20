@@ -2,12 +2,12 @@
 import GameBoard from '@/components/GameBoard.vue'
 import ChatWindow from '../components/ChatWindow.vue'
 import PlayerInfo from '../components/PlayerInfo.vue'
-import { userState } from '@/sockets/userSocket'
+import { usersState } from '@/sockets/usersSocket'
 // import { useUserStore } from '@/stores/userStore'
 // const store = useUserStore()
 // console.log(store.user)
 
-console.log(userState.user)
+console.log(usersState.users)
 </script>
 
 <template>
