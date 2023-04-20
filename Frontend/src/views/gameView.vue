@@ -8,8 +8,7 @@ import { usersState } from '@/sockets/usersSocket'
 // const store = useUserStore()
 // console.log(store.user)
 
-
-console.log(usersState.users)
+console.log(usersState.users) 
 
 </script>
 
@@ -26,5 +25,3 @@ console.log(usersState.users)
     <GameBoard />
   </div>
 </template>
-
-<style lang="sass" scoped></style>
