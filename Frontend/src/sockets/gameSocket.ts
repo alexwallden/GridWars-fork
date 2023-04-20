@@ -1,17 +1,20 @@
 import type ChatMessage from '@/models/ChatMessage';
 import { reactive } from 'vue'
 import { io } from 'socket.io-client'
-// import { socket } from '@/socket';
+import ColorChangeEmitBody from '@/models/ColorChangeEmitBody';
 
 export const gameState = reactive({
-  chatMessages: [] as ChatMessage[]
+  latestColorChange: new ColorChangeEmitBody(0, 0, 'white'), // Placeholder
+  reset: false
 })
 
 export const gameSocket = io('http://localhost:3000');
 
-gameSocket.on('color-change', (message: ChatMessage) => {
-  console.log('Mottaget message');
-  
-  // chatState.chatMessages.push(message)
+gameSocket.on('color-change', (colorInfo: ColorChangeEmitBody) => {
+  gameState.latestColorChange = colorInfo;
+})
+
+gameSocket.on('game-reset', () => {
+  gameState.reset = true;
 })
 

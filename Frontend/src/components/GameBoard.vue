@@ -1,46 +1,72 @@
 <template>
-  <div>
-    <div v-for="i in 10" :key="i" class="row">
+  <div @mousedown="() => (mouseDown = true)" @mouseup="() => (mouseDown = false)">
+    <div v-for="(n, i) in boardSize.rows" :key="i" class="row">
       <span
-        v-for="z in 10"
+        v-for="(v, z) in boardSize.columns"
         :key="z"
         class="cell"
-        @click="() => changeColor(i - 1, z - 1)"
-        :ref="(el) => el && createRefs(el as ComponentPublicInstance<HTMLSpanElement>)"
+        @mousedown="() => changeColor(i, z)"
+        @mouseover="() => mouseDown && changeColor(i, z)"
+        :ref="(el) => cells[i][z] = el as HTMLSpanElement"
       >
-        X
       </span>
     </div>
-    <button @click="log">Log</button>
+    <button @click="() => gameSocket.emit('game-reset')">Reset</button>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, type ComponentPublicInstance } from 'vue'
-import { gameSocket } from '../sockets/gameSocket'
+import { ref, type ComponentPublicInstance, watch } from 'vue'
+import { gameSocket, gameState } from '../sockets/gameSocket'
+import { useUserStore } from '@/stores/userStore'
+import ColorChangeEmitBody from '@/models/ColorChangeEmitBody'
 
-const rows = ref<ComponentPublicInstance<HTMLSpanElement>[][]>([])
-const cells = ref<ComponentPublicInstance<HTMLSpanElement>[]>([])
+const user = useUserStore().$state.user[0]
 
-const createRefs = (e: ComponentPublicInstance<HTMLSpanElement>) => {
-  e && cells.value.push(e)
-  if (cells.value.length === 10) {
-    rows.value.push(cells.value)
-    cells.value = []
+const mouseDown = ref(false) // För att fylla i cellerna om man håller ned musknappen
+const boardSize = ref({ rows: 15, columns: 20 }) // Bestämmer hur många rader och kolumner som ska renderas i <template>
+
+watch(() => gameState.latestColorChange, () => {
+  // Ändrar cellens färg när det kommer in en emit, gameState ligger i gameSocket.ts
+  const {
+    latestColorChange: { i, z, color }
+  } = gameState
+  cells.value[i][z].style.backgroundColor = color
+})
+
+watch(() => gameState.reset, () => {
+  cells.value.forEach((row) => {
+    row.forEach((cell) => {
+      cell.style.backgroundColor = 'white'
+    })
+  })
+  gameState.reset = false;
+})
+
+const create2dArrays = (numberOfRows: number) => {
+  // För att förvara referenser till cell-elementen
+  const parentArr: HTMLSpanElement[][] = []
+  for (let i = 0; i < numberOfRows; i++) {
+    const arrToPush: HTMLSpanElement[] = []
+    parentArr.push(arrToPush)
   }
+  return parentArr
 }
+
+const cells = ref(create2dArrays(boardSize.value.rows))
 
 const changeColor = (i: number, z: number) => {
-  console.log(i, z)
-  gameSocket.emit('color-change', {i, z, color: 'green'})
-  rows.value[i][z].style.backgroundColor = 'green'
-}
-
-const log = () => {
-  console.log(rows)
-  // console.log(cells);
-  // rows.value[0][0].style.backgroundColor = 'red';
+  gameSocket.emit('color-change', new ColorChangeEmitBody(i, z, user.color))
 }
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.cell {
+  display: inline-block;
+  cursor: pointer;
+  height: 20px;
+  width: 20px;
+  margin-right: 5px;
+  border: 1px solid black;
+}
+</style>
