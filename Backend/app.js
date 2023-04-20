@@ -31,6 +31,15 @@ io.on("connection", (socket) => {
     console.log("Message: ", message);
     io.emit("chat", message);
   });
+
+  socket.on('color-change', (colorChangeInfo) => {
+    console.log(colorChangeInfo);
+    io.emit('color-change', colorChangeInfo)
+  })
+
+  socket.on('game-reset', () => {
+    io.emit('game-reset');
+  })
 });
 
 module.exports = { app: app, server: server };
