@@ -1,3 +1,12 @@
+<template>
+  <div>
+    <h1 class="gameview">Gameview</h1>
+    <PlayerInfo />
+    <ChatWindow />
+    <GameBoard />
+  </div>
+</template>
+
 <script setup lang="ts">
 import GameBoard from '@/components/GameBoard.vue'
 import ChatWindow from '../components/ChatWindow.vue'
@@ -10,13 +19,15 @@ import { userState } from '@/sockets/userSocket'
 console.log(userState.user)
 </script>
 
-<template>
-  <div>
-    <h1>gameview</h1>
-    <PlayerInfo />
-    <ChatWindow />
-    <GameBoard />
-  </div>
-</template>
 
-<style lang="sass" scoped></style>
+
+<style lang="scss" scoped>
+.gameview {
+  text-align: center;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 3rem;
+}
+
+
+</style>
+
