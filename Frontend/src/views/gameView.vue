@@ -16,7 +16,7 @@ console.log(usersState.users)
   <div>
     <h1>gameview</h1>
     <PlayerInfo
-    v-for="(user, index) in usersState.users[usersState.users.length-1]"
+    v-for="(user, index) in usersState.users"
     :playerName="user.name"
     :playerColor="user.color"
     :key="index"
