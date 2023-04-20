@@ -1,20 +1,18 @@
 <template>
     <div class="player-info-container">
-        <h3 class="player-name">{{ playerName }}</h3>
-        <p class="player-color"></p>
+        <h3 class="player-name">{{ props.playerName }}</h3>
+        <p class="player-color" :style="{ backgroundColor: props.playerColor }"> {{ props.playerColor }}</p>
     </div>
 
 </template>
 
 <script setup lang="ts">
-import { useUserStore } from '@/stores/userStore'
-import { ref } from 'vue'
 
-const store = useUserStore()
-
-const playerName = store.user[0].name
-const PlayerColor = store.user[0].color
-const PlayerColorCss = ref(PlayerColor)
+const props = defineProps({
+  playerName: String,
+  playerColor: String,
+  playerId: String
+})
 
 </script>
 
@@ -24,7 +22,7 @@ const PlayerColorCss = ref(PlayerColor)
 
 }
 .player-color {
-    background-color: v-bind(PlayerColorCss);
+    background-color: white;
     width: 75px;
     height: 25px;
 }
