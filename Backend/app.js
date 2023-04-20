@@ -32,14 +32,14 @@ io.on("connection", (socket) => {
     io.emit("chat", message);
   });
 
-  socket.on('color-change', (colorChangeInfo) => {
+  socket.on("color-change", (colorChangeInfo) => {
     console.log(colorChangeInfo);
-    io.emit('color-change', colorChangeInfo)
-  })
+    io.emit("color-change", colorChangeInfo);
+  });
 
-  socket.on('game-reset', () => {
-    io.emit('game-reset');
-  })
+  socket.on("game-reset", () => {
+    io.emit("game-reset");
+  });
 });
 
 module.exports = { app: app, server: server };
