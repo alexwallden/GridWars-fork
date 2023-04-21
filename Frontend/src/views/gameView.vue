@@ -1,10 +1,20 @@
 <template>
-  <div>
-    <h1 class="gameview">Gameview</h1>
-    <PlayerInfo />
-    <ChatWindow />
-    <GameBoard />
-  </div>
+<div class="top-bar">
+    <div class="players">
+      <PlayerInfo />
+      <PlayerInfo /> 
+      <PlayerInfo />
+      <PlayerInfo />
+      <PlayerInfo />
+    </div>
+    <div class="logo-container">
+      <h1>GridWars</h1>
+    </div>
+</div>
+  <main>
+    <GameBoard class="game-board" />
+    <ChatWindow class="chat-window" />
+  </main>
 </template>
 
 <script setup lang="ts">
@@ -22,11 +32,38 @@ console.log(userState.user)
 
 
 <style lang="scss" scoped>
-.gameview {
-  text-align: center;
-  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  font-size: 3rem;
-}
+  main {
+    height: 85vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .game-board {
+    padding: 1rem;
+  }
+  .chat-window {
+    width: 23.4vw;
+  }
+  .logo-container {
+    width: 30vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .top-bar {
+    display: flex;
+    width: 100%;
+    border: 1px solid black;
+  }
+  .players {
+    height: 15vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
 
 
 </style>
