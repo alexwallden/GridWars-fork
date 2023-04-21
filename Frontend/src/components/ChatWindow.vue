@@ -55,6 +55,8 @@ function sendMessage() {
   height: 100%;
   border: 1px solid black;
   overflow-y: scroll;
+  display: flex;
+  flex-direction: column-reverse;
 }
 .chat-input-container {
   height: 5vh;
@@ -71,6 +73,7 @@ ul {
   display: flex;
   gap: 0.2rem;
   flex-direction: column;
+  justify-content: flex-end;
 
   li {
     list-style: none;
