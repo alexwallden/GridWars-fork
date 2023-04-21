@@ -13,4 +13,6 @@ timerSocket.on('time', (time: Timer) => {
     timerState.time = [];
     console.log('Mottaget timer');
     timerState.time.push(time)
+    //lägg till backend
+    //ändra i countdown vue
 })
