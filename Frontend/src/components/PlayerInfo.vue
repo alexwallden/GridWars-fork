@@ -19,12 +19,17 @@ const props = defineProps({
 <style scoped lang="scss">
 .player-info-container {
     margin-bottom: 10px;
-
+    width: 100%;
+    height: 100%;
+    padding: 0.2rem;
+    h3 {
+        text-align: center;
+    }
 }
 .player-color {
-    background-color: white;
-    width: 75px;
-    height: 25px;
+    background-color: v-bind(PlayerColorCss);
+    width: 100%;
+    height: 10vh;
 }
 
 </style>

@@ -1,18 +1,21 @@
 <template>
   <section class="chat-container">
-    <div class="chat-messages"></div>
-    <input class="chat-input" ref="input" id="inputText" type="text" />
-    <button class="chat-input-btn" @click="sendMessage">Send</button>
-    <ul>
-      <li
-        v-for="(message, i) in chatState.chatMessages"
-        :class="message.userId === loggedInUser ? 'my-message' : 'other-message'"
-        :style="{ backgroundColor: message.userColor }"
-        :key="i"
-      >
-        {{ message.username + ': ' + message.messageBody }}
-      </li>
-    </ul>
+    <div class="chat-messages">
+      <ul>
+        <li
+          v-for="(message, i) in chatState.chatMessages"
+          :class="message.userId === loggedInUser ? 'my-message' : 'other-message'"
+          :style="{ backgroundColor: message.userColor }"
+          :key="i"
+          >
+          {{ message.username + ': ' + message.messageBody }}
+        </li>
+      </ul>
+    </div>
+      <div class="chat-input-container">
+        <input class="chat-input" ref="input" id="inputText" type="text" />
+        <button class="chat-input-btn" @click="sendMessage">Send</button>
+      </div>
   </section>
 </template>
 
@@ -42,11 +45,35 @@ function sendMessage() {
 </script>
 
 <style scoped lang="scss">
-ul {
-  border: 1px solid black;
-  padding: 1rem;
+
+.chat-container {
   display: flex;
   flex-direction: column;
+  height: 85vh;
+}
+.chat-messages {
+  height: 100%;
+  border: 1px solid black;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column-reverse;
+}
+.chat-input-container {
+  height: 5vh;
+  display: flex;
+  input[type="text"] {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+
+ul {
+  padding: 1rem;
+  display: flex;
+  gap: 0.2rem;
+  flex-direction: column;
+  justify-content: flex-end;
 
   li {
     list-style: none;

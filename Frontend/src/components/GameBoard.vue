@@ -1,5 +1,5 @@
 <template>
-  <div @mousedown="() => (mouseDown = true)" @mouseup="() => (mouseDown = false)">
+  <div class="grid" @mousedown="() => (mouseDown = true)" @mouseup="() => (mouseDown = false)">
     <div v-for="(n, i) in boardSize.rows" :key="i" class="row">
       <span
         v-for="(v, z) in boardSize.columns"
@@ -11,7 +11,7 @@
       >
       </span>
     </div>
-    <button @click="() => gameSocket.emit('game-reset')">Reset</button>
+    <button class='resetbtn' @click="() => gameSocket.emit('game-reset')">Reset</button>
   </div>
 </template>
 
@@ -68,5 +68,11 @@ const changeColor = (i: number, z: number) => {
   width: 20px;
   margin-right: 5px;
   border: 1px solid black;
+}
+
+.grid {
+  display: grid;
+  place-content: center;
+  margin: 0 auto;
 }
 </style>
