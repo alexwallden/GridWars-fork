@@ -2,10 +2,6 @@
 <div class="top-bar">
     <div class="players">
       <PlayerInfo />
-      <PlayerInfo /> 
-      <PlayerInfo />
-      <PlayerInfo />
-      <PlayerInfo />
     </div>
     <div class="logo-container">
       <h1>GridWars</h1>
@@ -21,15 +17,14 @@
 import GameBoard from '@/components/GameBoard.vue'
 import ChatWindow from '../components/ChatWindow.vue'
 import PlayerInfo from '../components/PlayerInfo.vue'
-import { userState } from '@/sockets/userSocket'
+import { usersState } from '@/sockets/usersSocket'
+//import type User from '@/models/User';
 // import { useUserStore } from '@/stores/userStore'
 // const store = useUserStore()
 // console.log(store.user)
 
-console.log(userState.user)
+console.log(usersState.users) 
 </script>
-
-
 
 <style lang="scss" scoped>
   main {
@@ -63,8 +58,4 @@ console.log(userState.user)
     flex-direction: row;
     align-items: center;
   }
-
-
-
 </style>
-

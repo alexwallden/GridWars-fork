@@ -19,6 +19,7 @@ let users = [];
 
 io.on("connection", (socket) => {
   console.log("user connected: " + socket.id);
+  io.emit('create-user', users)
 
   socket.on("create-user", (user) => {
     users.push(user);
