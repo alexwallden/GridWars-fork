@@ -1,7 +1,7 @@
 <template>
 <div class="top-bar">
     <div class="players">
-      <PlayerInfo />
+      <PlayerInfo v-for="(user, i) in usersState.users" :key="i" :player-color="user.color" :player-name="user.name" />
     </div>
     <div class="logo-container">
       <h1>GridWars</h1>
@@ -19,8 +19,8 @@ import ChatWindow from '../components/ChatWindow.vue'
 import PlayerInfo from '../components/PlayerInfo.vue'
 import { usersState } from '@/sockets/usersSocket'
 //import type User from '@/models/User';
-// import { useUserStore } from '@/stores/userStore'
-// const store = useUserStore()
+import { useUserStore } from '@/stores/userStore'
+const store = useUserStore()
 // console.log(store.user)
 
 console.log(usersState.users) 

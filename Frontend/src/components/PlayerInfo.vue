@@ -27,7 +27,7 @@ const props = defineProps({
     }
 }
 .player-color {
-    background-color: v-bind(PlayerColorCss);
+    background-color: v-bind(playerColor);
     width: 100%;
     height: 10vh;
 }
