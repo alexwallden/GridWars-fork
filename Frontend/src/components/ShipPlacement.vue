@@ -29,7 +29,7 @@ const cells = ref(create2dArrays(boardSize.value.rows))
 
 const placed = ref(false)
 
-const shipCoordinates = ref({ y: 0, x: 0 })
+const shipCoordinates = ref<{y: null | number, x: null | number}>({ y: null, x: null })
 
 const placeShip = (y: number, x: number) => {
   if (!placed.value) {
@@ -42,7 +42,7 @@ const placeShip = (y: number, x: number) => {
 
 const sendCoordinates = () => {
   const { y, x } = shipCoordinates.value
-  gameSocket.emit('ship-placement', { y, x, color: user.color, id: user.id, name: user.name })
+  gameSocket.emit('ship-placement', { y, x, user })
 }
 </script>
 

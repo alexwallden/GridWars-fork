@@ -29,10 +29,13 @@ const boardSize = ref({ rows: 15, columns: 20 }) // Bestämmer hur många rader 
 
 watch(() => gameState.latestColorChange, () => {
   // Ändrar cellens färg när det kommer in en emit, gameState ligger i gameSocket.ts
-  const {
-    latestColorChange: { y, x, color }
+  if (gameState.latestColorChange) {
+
+    const {
+    latestColorChange: { y, x, user }
   } = gameState
-  cells.value[y][x].style.backgroundColor = color
+  cells.value[y][x].style.backgroundColor = user.color
+}
 })
 
 watch(() => gameState.reset, () => {
@@ -47,7 +50,7 @@ watch(() => gameState.reset, () => {
 const cells = ref(create2dArrays(boardSize.value.rows))
 
 const changeColor = (y: number, x: number) => {
-  gameSocket.emit('color-change', new ColorChangeEmitBody(y, x, user.color))
+  gameSocket.emit('color-change', new ColorChangeEmitBody(y, x, user))
 }
 </script>
 
