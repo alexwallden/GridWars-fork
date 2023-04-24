@@ -1,3 +1,5 @@
+import type User from "./User";
+
 export default class ColorChangeEmitBody {
-  constructor(public i: number, public z: number, public color: string) {}
+  constructor(public y: number, public x: number, public user: User) {}
 }

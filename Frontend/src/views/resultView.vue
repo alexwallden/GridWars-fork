@@ -1,7 +1,7 @@
 <template>
     <main class="main-container">
       <h1 class="heading">Result</h1>
-      <gameResult class="main-container" v-for="(user, i) in resultState.users" :key="i" :player-place="i" :player-color="user.color" :player-name="user.name"/> 
+      <gameResult class="main-container" v-for="(user, i) in resultState.users" :key="i" :player-place="i.toString()" :player-color="user.color" :player-name="user.name"/> 
     </main>
 </template>
   
