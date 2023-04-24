@@ -6,7 +6,8 @@ import ColorOption from '@/models/ColorOption';
 
 export const gameState = reactive({
   latestColorChange: new ColorChangeEmitBody(0, 0, 'white'), // Placeholder
-  reset: false
+  reset: false,
+  gameStarted: false
 })
 
 /**
@@ -24,6 +25,11 @@ gameSocket.on('color-change', (colorInfo: ColorChangeEmitBody) => {
 
 gameSocket.on('game-reset', () => {
   gameState.reset = true;
+})
+
+gameSocket.on('start-game', (startMessage) => {
+  console.log(startMessage);
+  gameState.gameStarted = startMessage.gameStarted;
 })
 
 // <option value="#0074cc" class="option-one" name="blue"></option>

@@ -17,6 +17,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 let users = [];
 let result = []
+const placedShips = [];
 
 io.on("connection", (socket) => {
   console.log("user connected: " + socket.id);
@@ -49,6 +50,13 @@ io.on("connection", (socket) => {
     console.log("Result Users: ", result);
     io.emit("result", result);
   });
+
+  socket.on('ship-placement', ((placementInfo) => {
+    placedShips.push(placementInfo);
+    if (placedShips.length === users.length) { //  && placedShips.length >= 4
+      io.emit('start-game', {gameStarted: true});
+    }
+  }))
 });
 
 module.exports = { app: app, server: server };

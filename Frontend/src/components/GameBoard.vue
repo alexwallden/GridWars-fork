@@ -7,7 +7,7 @@
         class="cell"
         @mousedown="() => changeColor(y, x)"
         @mouseover="() => mouseDown && changeColor(y, x)"
-        :ref="(el) => cells[y][x] = el as HTMLSpanElement"
+        :ref="(el) => {cells[y][x] = el as HTMLSpanElement}"
       >
       </span>
     </div>
@@ -20,6 +20,7 @@ import { ref, type ComponentPublicInstance, watch } from 'vue'
 import { gameSocket, gameState } from '../sockets/gameSocket'
 import { useUserStore } from '@/stores/userStore'
 import ColorChangeEmitBody from '@/models/ColorChangeEmitBody'
+import create2dArrays from '../helpers/create2dArrays'
 
 const user = useUserStore().$state.user[0]
 
@@ -42,16 +43,6 @@ watch(() => gameState.reset, () => {
   })
   gameState.reset = false;
 })
-
-const create2dArrays = (numberOfRows: number) => {
-  // För att förvara referenser till cell-elementen
-  const parentArr: HTMLSpanElement[][] = []
-  for (let i = 0; i < numberOfRows; i++) {
-    const arrToPush: HTMLSpanElement[] = []
-    parentArr.push(arrToPush)
-  }
-  return parentArr
-}
 
 const cells = ref(create2dArrays(boardSize.value.rows))
 

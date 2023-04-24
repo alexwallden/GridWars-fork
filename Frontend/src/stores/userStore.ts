@@ -5,7 +5,7 @@ const STORE_NAME = 'userStore'
 
 export const useUserStore = defineStore(STORE_NAME, {
   state: () => ({
-    user: [] as User[]
+    user: [] as User[],
   }),
   actions: {
     addUser(userName: string, color: string, id: string) {
