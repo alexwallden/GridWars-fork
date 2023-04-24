@@ -16,6 +16,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 let users = [];
+let result = []
 
 io.on("connection", (socket) => {
   console.log("user connected: " + socket.id);
@@ -40,6 +41,12 @@ io.on("connection", (socket) => {
 
   socket.on("game-reset", () => {
     io.emit("game-reset");
+  });
+
+  socket.on("result", (user) => {
+    result.push(user);
+    console.log("Result Users: ", result);
+    io.emit("result", result);
   });
 });
 
