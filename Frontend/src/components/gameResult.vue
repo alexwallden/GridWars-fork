@@ -1,20 +1,20 @@
 <template>
     <div class="result-info-container">
-        <h3>Nr. 1</h3>
-        <h5 class="player-name">playerName variable</h5>
-        <p class="player-color">playerColor variable</p>
+        <h3>Nr. {{props.playerPlace}}</h3>
+        <h5 class="player-name">{{ props.playerName}}</h5>
+        <p class="player-color">{{ props.playerColor}}</p>
     </div>
 
 </template>
 
 <script setup lang="ts">
 
-// const props = defineProps({
-//   playerName: String,
-//   playerColor: String,
-//   playerId: String,
-//   playerPlace: String
-// })
+const props = defineProps({
+   playerName: String,
+   playerColor: String,
+   playerId: String,
+   playerPlace: String
+})
 
 </script>
 

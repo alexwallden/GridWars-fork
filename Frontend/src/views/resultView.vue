@@ -1,15 +1,17 @@
 <template>
     <main class="main-container">
       <h1 class="heading">Result</h1>
-      <gameResult class="main-container" /> 
+      <gameResult class="main-container" v-for="(user, i) in resultState.users" :key="i" :player-place="i" :player-color="user.color" :player-name="user.name"/> 
     </main>
-  </template>
+</template>
   
-  <script setup lang="ts">
+<script setup lang="ts">
   import gameResult from '@/components/gameResult.vue'
-  </script>
+  import { resultState } from '@/sockets/resultSocket'
+
+</script>
   
-  <style lang="scss" scoped>
+<style lang="scss" scoped>
   .main-container {
     height: 100vh;
     display: flex;
@@ -22,4 +24,4 @@
     font-size: 3rem;
     margin-bottom: 2rem;
   }
-  </style>
+</style>
