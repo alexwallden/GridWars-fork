@@ -11,6 +11,7 @@
     <GameBoard class="game-board" />
     <ChatWindow class="chat-window" />
   </main>
+  <button @click="testResult">Test</button>
 </template>
 
 <script setup lang="ts">
@@ -18,12 +19,13 @@ import GameBoard from '@/components/GameBoard.vue'
 import ChatWindow from '../components/ChatWindow.vue'
 import PlayerInfo from '../components/PlayerInfo.vue'
 import { usersState } from '@/sockets/usersSocket'
-//import type User from '@/models/User';
-import { useUserStore } from '@/stores/userStore'
-const store = useUserStore()
-// console.log(store.user)
+import { resultSocket } from '@/sockets/resultSocket'
 
-console.log(usersState.users) 
+function testResult() {
+  const newResult = usersState.users[0]
+  resultSocket.emit('result', newResult)
+}
+
 </script>
 
 <style lang="scss" scoped>
