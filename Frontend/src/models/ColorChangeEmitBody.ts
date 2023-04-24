@@ -1,3 +1,3 @@
 export default class ColorChangeEmitBody {
-  constructor(public i: number, public z: number, public color: string) {}
+  constructor(public y: number, public x: number, public color: string) {}
 }

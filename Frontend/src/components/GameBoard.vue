@@ -1,13 +1,13 @@
 <template>
   <div class="grid" @mousedown="() => (mouseDown = true)" @mouseup="() => (mouseDown = false)">
-    <div v-for="(n, i) in boardSize.rows" :key="i" class="row">
+    <div v-for="(n, y) in boardSize.rows" :key="y" class="row">
       <span
-        v-for="(v, z) in boardSize.columns"
-        :key="z"
+        v-for="(v, x) in boardSize.columns"
+        :key="x"
         class="cell"
-        @mousedown="() => changeColor(i, z)"
-        @mouseover="() => mouseDown && changeColor(i, z)"
-        :ref="(el) => cells[i][z] = el as HTMLSpanElement"
+        @mousedown="() => changeColor(y, x)"
+        @mouseover="() => mouseDown && changeColor(y, x)"
+        :ref="(el) => cells[y][x] = el as HTMLSpanElement"
       >
       </span>
     </div>
@@ -29,9 +29,9 @@ const boardSize = ref({ rows: 15, columns: 20 }) // Bestämmer hur många rader 
 watch(() => gameState.latestColorChange, () => {
   // Ändrar cellens färg när det kommer in en emit, gameState ligger i gameSocket.ts
   const {
-    latestColorChange: { i, z, color }
+    latestColorChange: { y, x, color }
   } = gameState
-  cells.value[i][z].style.backgroundColor = color
+  cells.value[y][x].style.backgroundColor = color
 })
 
 watch(() => gameState.reset, () => {
@@ -55,8 +55,8 @@ const create2dArrays = (numberOfRows: number) => {
 
 const cells = ref(create2dArrays(boardSize.value.rows))
 
-const changeColor = (i: number, z: number) => {
-  gameSocket.emit('color-change', new ColorChangeEmitBody(i, z, user.color))
+const changeColor = (y: number, x: number) => {
+  gameSocket.emit('color-change', new ColorChangeEmitBody(y, x, user.color))
 }
 </script>
 
