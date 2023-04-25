@@ -11,6 +11,8 @@ export const state = reactive({
   const URL = "https://stingray-app-wj9j7.ondigitalocean.app";
   
   export const socket = io(URL);
+
+  socket.connect();
   
   socket.on("connect", () => {
     state.connected = true;
