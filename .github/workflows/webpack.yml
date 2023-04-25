@@ -37,7 +37,8 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: npm install
-        path: ./Frontend/
+        with:
+          path: './Frontend/'
       - name: Build
         run: npm run build
       - name: Setup Pages
@@ -51,7 +52,7 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v1
         with:
-          publish_dir: ./Frontend/dist
+          publish_dir: './Frontend/dist'
 # name: NodeJS with Webpack
 
 # on:
