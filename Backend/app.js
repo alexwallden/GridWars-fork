@@ -91,7 +91,7 @@ app.get('/test', (req, res) => {
   res.json('Det funkar');
 })
 
-server.listen(8080, () => {
+server.listen(80, () => {
   console.log('Server running...');
 });
 
