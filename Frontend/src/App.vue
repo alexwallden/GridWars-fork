@@ -6,6 +6,15 @@ const resetAll = () => {
   socket.emit('clear-everything');
 }
 
+const testFetch = async () => {
+  const response = await fetch('https://stingray-app-wj9j7.ondigitalocean.app');
+  console.log(response);
+  const data = await response.json();
+  console.log(data);
+}
+
+testFetch()
+
 </script>
 
 <template>
