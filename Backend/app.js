@@ -72,13 +72,13 @@ io.on('connection', (socket) => {
       io.emit('start-game', { gameStarted: true });
     }
   });
+  
+  socket.on('clear-everything', (msg) => {
+    users = [];
+    results = [];
+    placedShips = [];
+    console.log('Reset');
+  })
 });
-
-socket.on('clear-everything', (msg) => {
-  users = [];
-  results = [];
-  placedShips = [];
-  console.log('Reset');
-})
 
 module.exports = { app: app, server: server };
