@@ -7,11 +7,11 @@ const cors = require('cors');
 const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server, {
-  cors: { origin: 'https://alexwallden.github.io/gridwars-front/', methods: ['GET', 'POST'] },
+  cors: { origin: 'https://gridwars-front-f68d3.ondigitalocean.app/', methods: ['GET', 'POST'] },
 });
 
 const corsOptions = {
-  origin: 'https://alexwallden.github.io/gridwars-front/'
+  origin: 'https://gridwars-front-f68d3.ondigitalocean.app/'
 }
 
 app.use(logger('dev'));
