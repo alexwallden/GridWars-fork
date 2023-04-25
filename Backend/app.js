@@ -11,7 +11,7 @@ const io = require('socket.io')(server, {
 });
 
 const corsOptions = {
-  origin: '172.20.10.8'
+  origin: '*'
 }
 
 app.use(logger('dev'));
