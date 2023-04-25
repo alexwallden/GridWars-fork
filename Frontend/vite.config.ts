@@ -11,10 +11,10 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
-  root: './Frontend/',
+  root: './',
   build: {
     outDir: './dist',
   },
-  base: './Frontend/src'
+  // base: './src'
 
 })
