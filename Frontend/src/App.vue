@@ -3,7 +3,7 @@ import { RouterLink, RouterView } from 'vue-router'
 import { socket } from '@/socket'
 
 const resetAll = () => {
-  socket.emit('reset-all');
+  socket.emit('clear-everything');
 }
 
 </script>
