@@ -1,16 +1,21 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import { socket } from '@/socket'
+import axios from 'axios';
 
 const resetAll = () => {
   socket.emit('clear-everything');
 }
 
 const testFetch = async () => {
-  const response = await fetch('https://stingray-app-wj9j7.ondigitalocean.app');
-  console.log(response);
-  const data = await response.json();
+  // const response = await fetch('https://stingray-app-wj9j7.ondigitalocean.app');
+  // console.log(response);
+  // const data = await response.json();
+  // console.log(data);
+
+  const {data} = await axios.get('https://stingray-app-wj9j7.ondigitalocean.app');
   console.log(data);
+  
 }
 
 testFetch()

@@ -84,6 +84,7 @@ io.on('connection', (socket) => {
 });
 
 app.get('/', (req, res) => {
+  console.log('fetch gjord!');
   res.json('Det funkar')
 })
 
