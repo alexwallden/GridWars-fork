@@ -6,20 +6,14 @@ const cors = require('cors');
 
 const app = express();
 const server = require('http').createServer(app);
-const io = require('socket.io')(server, {
-  cors: { origin: '*', methods: ['GET', 'POST'] },
-});
-
-const corsOptions = {
-  origin: '*'
-}
+const io = require('socket.io')(server);
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(cors(corsOptions));
+app.use(cors());
 
 let users = [];
 let results = [];
