@@ -14,7 +14,7 @@ const testFetch = async () => {
   // console.log(data);
   console.log('Fetchar...');
   
-  const {data} = await axios.get('https://stingray-app-wj9j7.ondigitalocean.app/test');
+  const {data} = await axios.get('https://gridwars-backend-gs9kh.ondigitalocean.app/test');
   console.log(data);
   
 }
