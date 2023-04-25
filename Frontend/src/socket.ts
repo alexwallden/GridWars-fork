@@ -16,7 +16,7 @@ export const state = reactive({
   
   socket.on("connect", () => {
     state.connected = true;
-    console.log('Conected!');
+    console.log('Connected!');
     
   });
   
