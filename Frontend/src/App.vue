@@ -12,8 +12,9 @@ const testFetch = async () => {
   // console.log(response);
   // const data = await response.json();
   // console.log(data);
-
-  const {data} = await axios.get('https://stingray-app-wj9j7.ondigitalocean.app');
+  console.log('Fetchar...');
+  
+  const {data} = await axios.get('https://stingray-app-wj9j7.ondigitalocean.app/');
   console.log(data);
   
 }
