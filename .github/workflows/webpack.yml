@@ -37,7 +37,7 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: npm install
-        working-directory: ./path/to/your/frontend
+        working-directory: ./Frontend
       - name: Build
         run: npm run build
       - name: Setup Pages
