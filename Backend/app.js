@@ -5,15 +5,20 @@ const logger = require('morgan');
 const cors = require('cors');
 
 const app = express();
+app.use(cors());
 const server = require('http').createServer(app);
-const io = require('socket.io')(server);
+const io = require('socket.io')(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+  }
+});
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(cors());
 
 let users = [];
 let results = [];
@@ -81,9 +86,13 @@ io.on('connection', (socket) => {
   })
 });
 
-app.get('/', (req, res) => {
+app.get('/test', (req, res) => {
   console.log('fetch gjord!');
-  res.json('Det funkar')
+  res.json('Det funkar');
 })
+
+server.listen(8080, () => {
+  console.log('Server running...');
+});
 
 module.exports = { app: app, server: server };

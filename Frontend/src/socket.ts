@@ -8,7 +8,8 @@ export const state = reactive({
   });
   
   // "undefined" means the URL will be computed from the `window.location` object
-  const URL = "https://stingray-app-wj9j7.ondigitalocean.app";
+  const URL = "https://stingray-app-wj9j7.ondigitalocean.app/";
+  // const URL = 'http://localhost:8080';
   
   export const socket = io(URL);
 
