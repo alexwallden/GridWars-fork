@@ -25,13 +25,14 @@ import GameBoard from '@/components/GameBoard.vue'
 import ChatWindow from '../components/ChatWindow.vue'
 import PlayerInfo from '../components/PlayerInfo.vue'
 import { usersState } from '@/sockets/usersSocket'
-import { resultSocket } from '@/sockets/resultSocket'
+// import { resultSocket } from '@/sockets/resultSocket'
 import ShipPlacement from '@/components/ShipPlacement.vue'
 import { gameState } from '../sockets/gameSocket'
+import { socket } from '@/socket'
 
 function testResult() {
   const newResult = usersState.users[0]
-  resultSocket.emit('result', newResult)
+  socket.emit('result', newResult)
 }
 </script>
 

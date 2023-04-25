@@ -8,12 +8,14 @@ export const state = reactive({
   });
   
   // "undefined" means the URL will be computed from the `window.location` object
-  const URL = "http://localhost:3000";
+  const URL = "https://stingray-app-wj9j7.ondigitalocean.app";
   
   export const socket = io(URL);
   
   socket.on("connect", () => {
     state.connected = true;
+    console.log('Conected!');
+    
   });
   
   socket.on("disconnect", () => {

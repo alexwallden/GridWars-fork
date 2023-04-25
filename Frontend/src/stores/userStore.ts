@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import User from "@/models/User";
-import { gameSocket } from "@/sockets/gameSocket";
+// import { gameSocket } from "@/sockets/gameSocket";
+import { socket } from "@/socket";
 
 const STORE_NAME = 'userStore'
 
@@ -17,7 +18,7 @@ export const useUserStore = defineStore(STORE_NAME, {
   }
 })
 
-gameSocket.on('hitter', ((hitInfo) => {
+socket.on('hitter', ((hitInfo) => {
   if (hitInfo.hit) {
     useUserStore().$state.hits += 1
     console.log(useUserStore().$state.hits);

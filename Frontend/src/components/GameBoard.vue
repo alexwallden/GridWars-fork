@@ -11,16 +11,17 @@
       >
       </span>
     </div>
-    <button class='resetbtn' @click="() => gameSocket.emit('game-reset')">Reset</button>
+    <button class='resetbtn' @click="() => socket.emit('game-reset')">Reset</button>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, type ComponentPublicInstance, watch } from 'vue'
-import { gameSocket, gameState } from '../sockets/gameSocket'
+import {  gameState } from '../sockets/gameSocket'
 import { useUserStore } from '@/stores/userStore'
 import ColorChangeEmitBody from '@/models/ColorChangeEmitBody'
 import create2dArrays from '../helpers/create2dArrays'
+import { socket } from '@/socket'
 
 const user = useUserStore().$state.user[0]
 
@@ -50,7 +51,7 @@ watch(() => gameState.reset, () => {
 const cells = ref(create2dArrays(boardSize.value.rows))
 
 const changeColor = (y: number, x: number) => {
-  gameSocket.emit('color-change', new ColorChangeEmitBody(y, x, user))
+  socket.emit('color-change', new ColorChangeEmitBody(y, x, user))
 }
 </script>
 

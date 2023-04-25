@@ -17,9 +17,10 @@
 
 <script setup lang="ts">
 import create2dArrays from '@/helpers/create2dArrays'
+import { socket } from '@/socket'
 import { useUserStore } from '@/stores/userStore'
 import { ref } from 'vue'
-import { gameSocket } from '../sockets/gameSocket'
+// import { gameSocket } from '../sockets/gameSocket'
 
 const user = useUserStore().$state.user[0]
 
@@ -42,7 +43,7 @@ const placeShip = (y: number, x: number) => {
 
 const sendCoordinates = () => {
   const { y, x } = shipCoordinates.value
-  gameSocket.emit('ship-placement', { y, x, user })
+  socket.emit('ship-placement', { y, x, user })
 }
 </script>
 

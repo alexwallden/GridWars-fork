@@ -21,10 +21,11 @@
 
 <script setup lang="ts">
 import ChatMessage from '@/models/ChatMessage'
-import { chatSocket } from '@/sockets/chatSocket'
+// import { chatSocket } from '@/sockets/chatSocket'
 import { chatState } from '@/sockets/chatSocket'
 import { ref } from 'vue'
 import { useUserStore } from '@/stores/userStore'
+import { socket } from '@/socket'
 
 const store = useUserStore()
 
@@ -40,7 +41,7 @@ function sendMessage() {
   const color = store.user[0].color
   const newMessage = new ChatMessage(name, color, id, input.value?.value as string) // Update to get "username" and "userId" from localStorage
 
-  chatSocket.emit('chat', newMessage)
+  socket.emit('chat', newMessage)
 }
 </script>
 

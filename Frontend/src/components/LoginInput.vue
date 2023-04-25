@@ -19,10 +19,11 @@
 import LoginColor from './LoginColor.vue'
 import { ref, computed } from 'vue'
 import { useUserStore } from '@/stores/userStore'
-import { usersSocket, usersState } from '@/sockets/usersSocket'
+import { usersState } from '@/sockets/usersSocket'
 import { v4 as uuidv4 } from 'uuid'
 import User from '@/models/User'
 import router from '@/router'
+import { socket } from '@/socket'
 
 const store = useUserStore()
 
@@ -41,7 +42,7 @@ function createUser() {
   const id = uuidv4()
   store.addUser(playerName.value, playerColor.value, id)
   const newUser = new User(playerName.value, playerColor.value, id)
-  usersSocket.emit('create-user', newUser)
+  socket.emit('create-user', newUser)
   router.push('/game')
   isDuplicateName();
 }

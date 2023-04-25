@@ -2,6 +2,7 @@ import type User from '@/models/User'
 import { reactive } from 'vue'
 import { io } from 'socket.io-client'
 import ColorOption from '@/models/ColorOption'
+import { socket } from '@/socket'
 
 export const usersState = reactive({
   users: [] as User[],
@@ -26,9 +27,9 @@ const filterColorOptions = () => {
   }
 }
 
-export const usersSocket = io('http://localhost:3000')
+// export const usersSocket = io('http://localhost:3000')
 
-usersSocket.on('create-user', (users: User[]) => {
+socket.on('create-user', (users: User[]) => {
   usersState.users = []
   console.log('Mottagen user', users)
   usersState.users = users

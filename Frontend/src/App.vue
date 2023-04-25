@@ -1,5 +1,11 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
+import { socket } from '@/socket'
+
+const resetAll = () => {
+  socket.emit('reset-all');
+}
+
 </script>
 
 <template>
@@ -13,6 +19,7 @@ import { RouterLink, RouterView } from 'vue-router'
   </header>
 
   <RouterView />
+  <button @click="resetAll">Reset all</button>
 </template>
 
 <style lang="sass" scoped></style>

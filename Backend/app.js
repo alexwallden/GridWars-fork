@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 let users = [];
 let results = [];
-const placedShips = [];
+let placedShips = [];
 
 io.on('connection', (socket) => {
   console.log('user connected: ' + socket.id);
@@ -73,5 +73,12 @@ io.on('connection', (socket) => {
     }
   });
 });
+
+socket.on('clear-everything', (msg) => {
+  users = [];
+  results = [];
+  placedShips = [];
+  console.log('Reset');
+})
 
 module.exports = { app: app, server: server };
