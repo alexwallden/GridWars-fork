@@ -15,5 +15,5 @@ export default defineConfig({
   build: {
     outDir: './dist',
   },
-  base: '/GridWars-fork'
+  base: '/'
 })
