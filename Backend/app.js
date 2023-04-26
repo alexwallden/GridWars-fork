@@ -7,7 +7,7 @@ const { instrument } = require('@socket.io/admin-ui');
 
 const app = express();
 app.use(cors());
-const server = require('http').createServer(app);
+const server = require('http').Server(app);
 const io = require('socket.io')(server, {
   cors: {
     origin: ['*', 'https://admin.socket.io'],
@@ -24,6 +24,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 let users = [];
 let results = [];
 let placedShips = [];
+
+const gameIo = io.of('/game')
 
 io.on('connection', (socket) => {
   console.log('user connected: ' + socket.id);
@@ -99,16 +101,17 @@ io.on('connection', (socket) => {
   });
 });
 
+instrument(io, { auth: false, mode: 'production' });
+
 app.get('/test', (req, res) => {
   console.log('fetch gjord!');
   res.json('Det funkar');
 });
 
-var port = process.env.PORT || '8080';
+var port = process.env.PORT || 8080;
 server.listen(port, () => {
   console.log('Server running...');
 });
 
-instrument(io, { auth: false });
 
 // module.exports = { app: app, server: server };

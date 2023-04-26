@@ -8,22 +8,23 @@ export const state = reactive({
 })
 
 // "undefined" means the URL will be computed from the `window.location` object
-const URL = 'https://gridwars-backend-gs9kh.ondigitalocean.app/'
+const URL = 'https://gridwars-backend-gs9kh.ondigitalocean.app/game';
 // const URL = 'http://localhost:8080';
 
 // export const socket = io(URL, {transports: ['websocket', 'flashsocket', 'polling']});
 export const socket = io(URL, {
   transports: ['websocket', 'flashsocket', 'polling'],
-  reconnection: true,
+  autoConnect: true,
+  reconnection: false,
   reconnectionAttempts: 5,
-  reconnectionDelay: 100
+  reconnectionDelay: 100,
 })
 
 // socket.connect();
 
 socket.on('connect', () => {
   state.connected = true
-  console.log('Connected!')
+  console.log('Connected! Id: ', socket)  
 })
 
 socket.on('disconnect', () => {
