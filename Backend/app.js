@@ -3,7 +3,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
-const fs = require('fs');
+const { instrument } = require('@socket.io/admin-ui');
 
 const app = express();
 app.use(cors());
@@ -104,5 +104,7 @@ var port = process.env.PORT || '8080';
 server.listen(port, () => {
   console.log('Server running...');
 });
+
+instrument(io, { auth: false });
 
 // module.exports = { app: app, server: server };
