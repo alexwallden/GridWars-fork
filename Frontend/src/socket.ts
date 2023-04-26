@@ -11,7 +11,7 @@ export const state = reactive({
   const URL = "https://gridwars-backend-gs9kh.ondigitalocean.app/";
   // const URL = 'http://localhost:8080';
   
-  export const socket = io(URL, {autoConnect: false});
+  export const socket = io(URL, {autoConnect: false, rejectUnauthorized: false});
 
   socket.connect();
   
@@ -27,6 +27,10 @@ export const state = reactive({
     state.connected = false;
     console.log('On disconnect');
     
+  });
+
+  socket.on("connect_error", (err) => {
+    console.log(`connect_error due to ${err.message}`);
   });
   
 //   socket.on("foo", (...args) => {
