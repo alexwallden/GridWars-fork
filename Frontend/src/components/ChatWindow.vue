@@ -21,7 +21,6 @@
 
 <script setup lang="ts">
 import ChatMessage from '@/models/ChatMessage'
-// import { chatSocket } from '@/sockets/chatSocket'
 import { chatState } from '@/sockets/chatSocket'
 import { ref } from 'vue'
 import { useUserStore } from '@/stores/userStore'

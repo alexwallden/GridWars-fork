@@ -19,7 +19,7 @@ const testFetch = async () => {
   
 }
 
-testFetch()
+// testFetch()
 
 </script>
 
