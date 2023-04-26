@@ -13,7 +13,7 @@ export const state = reactive({
   
   export const socket = io(URL, {transports: ['websocket', 'flashsocket', 'polling']});
 
-  socket.connect();
+  // socket.connect();
   
   socket.on("connect", () => {
     console.log('On connect');
