@@ -12,7 +12,7 @@ export const state = reactive({
   // const URL = 'http://localhost:8080';
   
   // export const socket = io(URL, {transports: ['websocket', 'flashsocket', 'polling']});
-  export const socket = io(URL, {transports: ['websocket', 'flashsocket']});
+  export const socket = io(URL, {transports: ['websocket']});
 
   // socket.connect();
   
