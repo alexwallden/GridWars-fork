@@ -11,9 +11,9 @@ export const state = reactive({
   const URL = "https://gridwars-backend-gs9kh.ondigitalocean.app/";
   // const URL = 'http://localhost:8080';
   
-  export const socket = io(URL, {autoConnect: false, rejectUnauthorized: false, transports: ['websocket']});
+  export const socket = io(URL, {transports: ['websocket']});
 
-  socket.connect();
+  // socket.connect();
   
   socket.on("connect", () => {
     console.log('On connect');

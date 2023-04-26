@@ -26,7 +26,7 @@ let placedShips = [];
 
 io.on('connection', (socket) => {
   console.log('user connected: ' + socket.id);
-  io.emit('create-user', users);
+  // io.emit('create-user', users);
   io.emit('result', results);
 
   socket.on('create-user', (user) => {
@@ -78,11 +78,14 @@ io.on('connection', (socket) => {
     }
   });
   
-  socket.on('clear-everything', (msg) => {
+  socket.on('clear-everything', () => {
     users = [];
     results = [];
     placedShips = [];
     console.log('Reset');
+    console.log('users: ', users);
+    console.log('placedShips: ', placedShips);
+    console.log('results: ', results);
   })
 });
 
