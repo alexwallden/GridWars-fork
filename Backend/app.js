@@ -91,8 +91,9 @@ app.get('/test', (req, res) => {
   res.json('Det funkar');
 })
 
-server.listen(8080, () => {
+var port = process.env.PORT || "8080";
+server.listen(port, () => {
   console.log('Server running...');
 });
 
-module.exports = { app: app, server: server };
+// module.exports = { app: app, server: server };
