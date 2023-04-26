@@ -27,11 +27,11 @@ let placedShips = [];
 
 const gameIo = io.of('/game')
 
-io.on('connection', (socket) => {
+gameIo.on('connection', (socket) => {
   console.log('user connected: ' + socket.id);
-  io.emit('created-users', [...users]);
+  gameIo.emit('created-users', [...users]);
   console.log('Users sent: ', users);
-  io.emit('result', results);
+  gameIo.emit('result', results);
 
   socket.on('error', (err) => {
     console.log('Error: ', err);
@@ -45,12 +45,12 @@ io.on('connection', (socket) => {
     users.push(user);
     console.log('Users: ', users);
     // console.log("Users: ", users[1].user);
-    io.emit('create-user', users);
+    gameIo.emit('create-user', users);
   });
 
   socket.on('chat', (message) => {
     console.log('Message: ', message);
-    io.emit('chat', message);
+    gameIo.emit('chat', message);
   });
 
   socket.on('color-change', (colorChangeInfo) => {
@@ -59,26 +59,26 @@ io.on('connection', (socket) => {
       (ship) => ship.y === colorChangeInfo.y && ship.x === colorChangeInfo.x
     );
     console.log(foundShip);
-    io.emit('color-change', colorChangeInfo);
+    gameIo.emit('color-change', colorChangeInfo);
     if (foundShip) {
       const hitter = { color: colorChangeInfo.user.color };
       const hittee = { color: foundShip.user.color };
       const result = { hitter, hittee };
       results.push(result);
       console.log(results);
-      io.emit('ship-hit', foundShip);
+      gameIo.emit('ship-hit', foundShip);
       socket.emit('hitter', { hit: true });
     }
   });
 
   socket.on('game-reset', () => {
-    io.emit('game-reset');
+    gameIo.emit('game-reset');
   });
 
   socket.on('result', (user) => {
     results.push(user);
     console.log('Result Users: ', results);
-    io.emit('result', results);
+    gameIo.emit('result', results);
   });
 
   socket.on('ship-placement', (placementInfo) => {
@@ -86,7 +86,7 @@ io.on('connection', (socket) => {
     placedShips.push(placementInfo);
     if (placedShips.length === users.length) {
       //  && placedShips.length >= 4
-      io.emit('start-game', { gameStarted: true });
+      gameIo.emit('start-game', { gameStarted: true });
     }
   });
 

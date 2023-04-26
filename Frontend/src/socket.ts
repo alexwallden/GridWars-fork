@@ -9,13 +9,13 @@ export const state = reactive({
 
 // "undefined" means the URL will be computed from the `window.location` object
 const URL = 'https://gridwars-backend-gs9kh.ondigitalocean.app/game';
-// const URL = 'http://localhost:8080';
+// const URL = 'http://localhost:8080/game';
 
 // export const socket = io(URL, {transports: ['websocket', 'flashsocket', 'polling']});
 export const socket = io(URL, {
   transports: ['websocket', 'flashsocket', 'polling'],
   autoConnect: true,
-  reconnection: false,
+  reconnection: true,
   reconnectionAttempts: 5,
   reconnectionDelay: 100,
 })
