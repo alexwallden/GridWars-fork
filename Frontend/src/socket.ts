@@ -13,7 +13,7 @@ const URL = 'https://gridwars-backend-gs9kh.ondigitalocean.app/'
 
 // export const socket = io(URL, {transports: ['websocket', 'flashsocket', 'polling']});
 export const socket = io(URL, {
-  transports: ['websocket'],
+  transports: ['websocket', 'flashsocket', 'polling'],
   reconnection: true,
   reconnectionAttempts: 5,
   reconnectionDelay: 100
