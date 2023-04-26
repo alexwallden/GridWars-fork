@@ -13,17 +13,17 @@ export const state = reactive({
   
   export const socket = io(URL);
 
-  socket.connect();
+  // socket.connect();
   
-  socket.on("connect", () => {
-    state.connected = true;
-    console.log('Connected!');
+  // socket.on("connect", () => {
+  //   state.connected = true;
+  //   console.log('Connected!');
     
-  });
+  // });
   
-  socket.on("disconnect", () => {
-    state.connected = false;
-  });
+  // socket.on("disconnect", () => {
+  //   state.connected = false;
+  // });
   
 //   socket.on("foo", (...args) => {
 //     state.fooEvents.push(args);
