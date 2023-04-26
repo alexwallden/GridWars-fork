@@ -25,7 +25,7 @@ let users = [];
 let results = [];
 let placedShips = [];
 
-const gameIo = io.of('/game')
+const gameIo = io.of('/game');
 
 gameIo.on('connection', (socket) => {
   console.log('user connected: ' + socket.id);
@@ -35,7 +35,7 @@ gameIo.on('connection', (socket) => {
 
   socket.on('error', (err) => {
     console.log('Error: ', err);
-  })
+  });
 
   socket.on('disconnect', () => {
     console.log('User disconnected', socket.id);
@@ -101,7 +101,7 @@ gameIo.on('connection', (socket) => {
   });
 });
 
-instrument(io, { auth: false, mode: 'production' });
+instrument(io, { auth: false });
 
 app.get('/test', (req, res) => {
   console.log('fetch gjord!');
@@ -112,6 +112,5 @@ var port = process.env.PORT || 8080;
 server.listen(port, () => {
   console.log('Server running...');
 });
-
 
 // module.exports = { app: app, server: server };
