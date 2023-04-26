@@ -26,11 +26,10 @@ let placedShips = [];
 
 io.on('connection', (socket) => {
   console.log('user connected: ' + socket.id);
-  socket.emit('create-user', users)
-  // io.emit('create-user', users);
-  // io.emit('result', results);
+  io.emit('create-user', users);
+  io.emit('result', results);
 
-  socket.on('disconnect', (user) => {
+  socket.on('disconnect', () => {
     console.log('Disconnected');
     console.log(socket.id);
   })
