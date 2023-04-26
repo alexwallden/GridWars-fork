@@ -9,9 +9,9 @@ app.use(cors());
 const server = require('http').createServer(app);
 const io = require('socket.io')(server, {
   cors: {
-    origin: "*",
-    methods: ["GET", "POST", "PUT"],
-  }
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT'],
+  },
 });
 
 app.use(logger('dev'));
@@ -25,18 +25,14 @@ let results = [];
 let placedShips = [];
 
 io.on('connection', (socket) => {
-  io.socketsJoin('game1');
   console.log('user connected: ' + socket.id);
-  // io.emit('create-user', users);
-  setTimeout(() => {
-    socket.emit('create-user', users);
-    console.log('Users sent: ', users);
-  }, 100);
+  io.emit('create-user', users);
+  console.log('Users sent: ', users);
   io.emit('result', results);
 
   socket.on('disconnect', () => {
     console.log('User disconnected', socket.id);
-  })
+  });
 
   socket.on('create-user', (user) => {
     users.push(user);
@@ -64,7 +60,7 @@ io.on('connection', (socket) => {
       results.push(result);
       console.log(results);
       io.emit('ship-hit', foundShip);
-      socket.emit('hitter', {hit: true})
+      socket.emit('hitter', { hit: true });
     }
   });
 
@@ -86,7 +82,7 @@ io.on('connection', (socket) => {
       io.emit('start-game', { gameStarted: true });
     }
   });
-  
+
   socket.on('clear-everything', () => {
     users = [];
     results = [];
@@ -95,15 +91,15 @@ io.on('connection', (socket) => {
     console.log('users: ', users);
     console.log('placedShips: ', placedShips);
     console.log('results: ', results);
-  })
+  });
 });
 
 app.get('/test', (req, res) => {
   console.log('fetch gjord!');
   res.json('Det funkar');
-})
+});
 
-var port = process.env.PORT || "8080";
+var port = process.env.PORT || '8080';
 server.listen(port, () => {
   console.log('Server running...');
 });
