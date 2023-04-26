@@ -7,6 +7,9 @@
 
 <script setup lang="ts">
 import LoginInput from '@/components/LoginInput.vue'
+import { socket } from '@/socket';
+
+socket.connect()
 </script>
 
 <style lang="scss" scoped>

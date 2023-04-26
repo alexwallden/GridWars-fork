@@ -2,13 +2,10 @@
 import { RouterLink, RouterView } from 'vue-router'
 import { socket } from '@/socket'
 import axios from 'axios'
-import { onMounted } from 'vue'
 
 const resetAll = () => {
   socket.emit('clear-everything')
 }
-
-socket.connect()
 
 const testFetch = async () => {
   // const response = await fetch('https://stingray-app-wj9j7.ondigitalocean.app');

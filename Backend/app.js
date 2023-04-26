@@ -25,6 +25,7 @@ let results = [];
 let placedShips = [];
 
 io.on('connection', (socket) => {
+  io.socketsJoin('game1');
   console.log('user connected: ' + socket.id);
   // io.emit('create-user', users);
   setTimeout(() => {
@@ -34,8 +35,7 @@ io.on('connection', (socket) => {
   io.emit('result', results);
 
   socket.on('disconnect', () => {
-    console.log('Disconnected');
-    console.log(socket.id);
+    console.log('User disconnected', socket.id);
   })
 
   socket.on('create-user', (user) => {
