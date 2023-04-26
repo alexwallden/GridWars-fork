@@ -15,15 +15,19 @@ export const state = reactive({
 
   // socket.connect();
   
-  // socket.on("connect", () => {
-  //   state.connected = true;
-  //   console.log('Connected!');
+  socket.on("connect", () => {
+    console.log('On connect');
     
-  // });
+    state.connected = true;
+    console.log('Connected!');
+    
+  });
   
-  // socket.on("disconnect", () => {
-  //   state.connected = false;
-  // });
+  socket.on("disconnect", () => {
+    state.connected = false;
+    console.log('On disconnect');
+    
+  });
   
 //   socket.on("foo", (...args) => {
 //     state.fooEvents.push(args);

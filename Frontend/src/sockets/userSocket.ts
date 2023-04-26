@@ -9,9 +9,9 @@ export const userState = reactive({
   
   // export const userSocket = io('http://localhost:3000');
   
-  socket.on('create-user', (user: User) => {
-    //userState.user = []; // behövde kommentera bort denna
-    console.log('Mottagen user');
+  // socket.on('create-user', (user: User) => {
+  //   //userState.user = []; // behövde kommentera bort denna
+  //   console.log('Mottagen user');
     
-    userState.user.push(user)
-  })
+  //   userState.user.push(user)
+  // })
