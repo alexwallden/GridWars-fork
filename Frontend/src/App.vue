@@ -18,7 +18,7 @@ const testFetch = async () => {
   console.log(data);
   
 }
-
+// socket.connect()
 // testFetch()
 
 </script>
