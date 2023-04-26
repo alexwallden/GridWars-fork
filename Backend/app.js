@@ -3,6 +3,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
+const fs = require('fs');
 
 const app = express();
 app.use(cors());
@@ -26,7 +27,7 @@ let placedShips = [];
 
 io.on('connection', (socket) => {
   console.log('user connected: ' + socket.id);
-  io.emit('create-user', [...users]);
+  io.emit('created-users', [...users]);
   console.log('Users sent: ', users);
   io.emit('result', results);
 

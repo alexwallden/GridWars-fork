@@ -37,3 +37,9 @@ socket.on('create-user', (users: User[]) => {
   usersState.users = users
   filterColorOptions()
 })
+socket.on('created-users', (users: User[]) => {
+  // usersState.users = []
+  console.log('Mottagen user', users)
+  usersState.users = users
+  filterColorOptions()
+})
