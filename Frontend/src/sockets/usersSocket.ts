@@ -16,10 +16,12 @@ export const usersState = reactive({
 })
 
 const filterColorOptions = () => {
-  const { availableColorOptions } = usersState
+  const { availableColorOptions } = usersState;
   for (let index = 0; index < usersState.users.length; index++) {
     const { color } = usersState.users[index]
     const duplicateColor = availableColorOptions.find((option) => option.color === color)
+    console.log('duplicateColor: ', duplicateColor);
+    
     if (duplicateColor) {
       const duplicateColorIndex = availableColorOptions.map((color) => color.color).indexOf(duplicateColor.color)
       availableColorOptions.splice(duplicateColorIndex, 1)
@@ -30,7 +32,7 @@ const filterColorOptions = () => {
 // export const usersSocket = io('http://localhost:3000')
 
 socket.on('create-user', (users: User[]) => {
-  usersState.users = []
+  // usersState.users = []
   console.log('Mottagen user', users)
   usersState.users = users
   filterColorOptions()
