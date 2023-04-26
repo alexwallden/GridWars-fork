@@ -10,7 +10,7 @@ app.use(cors());
 const server = require('http').createServer(app);
 const io = require('socket.io')(server, {
   cors: {
-    origin: '*',
+    origin: ['*', 'https://admin.socket.io/'],
     methods: ['GET', 'POST', 'PUT'],
   },
 });
@@ -30,6 +30,10 @@ io.on('connection', (socket) => {
   io.emit('created-users', [...users]);
   console.log('Users sent: ', users);
   io.emit('result', results);
+
+  socket.on('error', (err) => {
+    console.log('Error: ', err);
+  })
 
   socket.on('disconnect', () => {
     console.log('User disconnected', socket.id);
