@@ -24,12 +24,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 let users = [];
 let results = [];
 let placedShips = [];
+let oneUserCreated = false;
 
 const gameIo = io.of('/game');
 
 gameIo.on('connection', (socket) => {
   console.log('user connected: ' + socket.id);
-  gameIo.emit('created-users', [...users]);
+  gameIo.emit('created-users', [...users], oneUserCreated);
   console.log('Users sent: ', users);
   gameIo.emit('result', results);
 
@@ -44,6 +45,7 @@ gameIo.on('connection', (socket) => {
   socket.on('create-user', (user) => {
     users.push(user);
     console.log('Users: ', users);
+    oneUserCreated = true;
     // console.log("Users: ", users[1].user);
     gameIo.emit('create-user', users);
   });

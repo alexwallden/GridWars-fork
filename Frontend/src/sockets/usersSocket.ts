@@ -31,9 +31,11 @@ const filterColorOptions = () => {
 
 // export const usersSocket = io('http://localhost:3000')
 
-socket.on('create-user', (users: User[]) => {
+socket.on('create-user', (users: User[], oneUserCreated) => {
   // usersState.users = []
   console.log('Mottagen user', users)
+  console.log('oneUserCreated: ', oneUserCreated);
+  
   usersState.users = users
   filterColorOptions()
 })

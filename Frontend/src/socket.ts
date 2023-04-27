@@ -24,7 +24,7 @@ export const socket = io(URL, {
 
 socket.on('connect', () => {
   state.connected = true
-  console.log('Connected! Id: ', socket)  
+  console.log('Connected! Socket: ', socket.id, socket)  
 })
 
 socket.on('disconnect', () => {
